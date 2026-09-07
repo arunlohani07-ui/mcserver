@@ -1,0 +1,6 @@
+const $=s=>document.querySelector(s);
+function toast(t){const x=$("#toast");x.textContent=t;x.style.display="block";setTimeout(()=>x.style.display="none",2200)}
+async function load(){try{const r=await fetch("/api/status");const d=await r.json();if(!r.ok)throw Error(d.error);$("#players").textContent=d.players;$("#capacity").textContent=`of ${d.maxPlayers} slots`;$("#tps").textContent=d.tps??"—";$("#ram").textContent=d.ram?d.ram+"%":"—";$("#uptime").textContent=d.uptime??"—";$("#rambar").textContent=(d.ram??38)+"%";$("#ramfill").style.width=(d.ram??38)+"%"}catch(e){toast("Server offline: "+e.message)}}
+document.querySelectorAll("[data-action]").forEach(b=>b.onclick=async()=>{b.disabled=true;try{const r=await fetch("/api/action",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:b.dataset.action})});const d=await r.json();toast(d.ok?"Action sent ✓":d.error)}finally{b.disabled=false}});
+$("#send").onclick=async()=>{const m=$("#message").value.trim();if(!m)return;const r=await fetch("/api/action",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"say",message:m})});const d=await r.json();toast(d.ok?"Broadcast sent ✓":d.error);$("#message").value=""};
+$("#refresh").onclick=()=>{load();toast("Dashboard refreshed")};load();setInterval(load,10000);

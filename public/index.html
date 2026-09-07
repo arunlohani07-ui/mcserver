@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CraftPanel — Minecraft Server</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="bg"></div>
+<header class="topbar">
+  <div class="brand"><span class="cube">◆</span><div><b>CRAFTPANEL</b><small>SERVER COMMAND CENTER</small></div></div>
+  <div class="top-actions"><span class="pill live">● ONLINE</span><button id="refresh">↻ Refresh</button></div>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <div class="eyebrow">MINECRAFT SERVER MANAGEMENT</div>
+    <h1>Your world.<br><span>Your rules.</span></h1>
+    <p>Manage your server, players and live performance from one blocky control room.</p>
+  </div>
+  <div class="server-card">
+    <div class="server-icon">⛏</div>
+    <div><strong>Survival Realm</strong><small>play.example.net</small></div>
+    <span class="dot"></span>
+  </div>
+</section>
+
+<section class="stats">
+  <article><small>PLAYERS</small><strong id="players">—</strong><span id="capacity">Loading...</span></article>
+  <article><small>TPS</small><strong id="tps">—</strong><span>Target 20.0</span></article>
+  <article><small>MEMORY</small><strong id="ram">—</strong><span>Java heap</span></article>
+  <article><small>UPTIME</small><strong id="uptime">—</strong><span>Since restart</span></article>
+</section>
+
+<div class="grid">
+<section class="panel">
+  <div class="panel-head"><div><small>CONTROL ROOM</small><h2>Quick Actions</h2></div></div>
+  <div class="actions">
+    <button data-action="save"><b>▣</b><span><strong>Save World</strong><small>Write all chunks to disk</small></span></button>
+    <button data-action="weather"><b>☀</b><span><strong>Clear Weather</strong><small>Set weather to clear</small></span></button>
+    <button data-action="time"><b>☼</b><span><strong>Set Day</strong><small>Change world time</small></span></button>
+  </div>
+  <div class="broadcast"><input id="message" placeholder="Broadcast a message to players…"><button id="send">SEND</button></div>
+</section>
+
+<section class="panel">
+  <div class="panel-head"><div><small>SERVER HEALTH</small><h2>Live Monitor</h2></div><span class="green">● LIVE</span></div>
+  <div class="bars"><div><label>CPU <b>42%</b></label><i><em style="width:42%"></em></i></div>
+  <div><label>MEMORY <b id="rambar">38%</b></label><i><em id="ramfill" style="width:38%"></em></i></div>
+  <div><label>TPS <b>19.9</b></label><i><em style="width:99%"></em></i></div></div>
+  <div class="console"><span>[15:08:21]</span> Server is ready<br><span>[15:08:32]</span> 7 players online<br><span>[15:09:01]</span> Autosave completed</div>
+</section>
+</div>
+
+<section class="features">
+  <div><b>01</b><strong>Player Control</strong><p>Kick, ban, whitelist and inspect players through the API layer.</p></div>
+  <div><b>02</b><strong>Console Ready</strong><p>Connect RCON to send commands without exposing the Minecraft port.</p></div>
+  <div><b>03</b><strong>Mobile First</strong><p>Built to feel clean on Android and work comfortably in Termux.</p></div>
+</section>
+</main>
+<div id="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>
